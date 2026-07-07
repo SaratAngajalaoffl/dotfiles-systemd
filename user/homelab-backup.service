@@ -1,0 +1,13 @@
+[Unit]
+Description=Homelab directory backup to S3 (encrypted tar)
+Documentation=file://%h/.config/scripts/backup/backup_homelab.sh
+
+[Service]
+Type=oneshot
+# Runs in your user session — no User= line (unlike system units).
+WorkingDirectory=%h
+ExecStart=%h/.config/scripts/backup/backup_homelab.sh
+Nice=10
+IOSchedulingClass=idle
+
+# Logs: journalctl --user -u homelab-backup.service

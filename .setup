@@ -1,0 +1,3 @@
+Enable timers after install:
+  systemctl --user daemon-reload
+  systemctl --user enable --now homelab-backup.timer wallpaper-update.timer

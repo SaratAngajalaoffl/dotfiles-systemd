@@ -1,0 +1,25 @@
+# Weekly: Sunday 00:00:00 UTC.
+#
+# Put (or symlink) this file and homelab-backup.service under ~/.config/systemd/user/
+# then:
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now homelab-backup.timer
+#   systemctl --user list-timers
+#
+# Logs:
+#   journalctl --user -u homelab-backup.service
+#   journalctl --user -u homelab-backup.timer
+#
+# Run the backup once now (no schedule wait):
+#   systemctl --user start homelab-backup.service
+
+[Unit]
+Description=Timer — homelab S3 backup (weekly, Sun 00:00 UTC)
+
+[Timer]
+OnCalendar=Sun *-*-* 00:00:00 UTC
+Persistent=true
+Unit=homelab-backup.service
+
+[Install]
+WantedBy=timers.target
