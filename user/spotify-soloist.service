@@ -1,0 +1,20 @@
+[Unit]
+Description=Spotify Soloist (headless Spotify Connect device)
+Documentation=https://developer.spotify.com/documentation/soloist
+
+[Service]
+Type=simple
+# Runs in your user session — no User= line (unlike system units).
+# The API key comes from the gnome-keyring secret store via the launcher
+# script, never from a file in this repo — see spotify-soloist-launch.sh.
+ExecStart=%h/.config/systemd/user/spotify-soloist-launch.sh
+# systemd --user's default PATH omits ~/bin (soloist lives there), unlike
+# an interactive shell's PATH.
+Environment=PATH=%h/bin:%h/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin
+Restart=on-failure
+RestartSec=5
+
+# Logs: journalctl --user -u spotify-soloist.service
+
+[Install]
+WantedBy=default.target

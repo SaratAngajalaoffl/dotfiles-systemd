@@ -1,3 +1,17 @@
 Enable timers after install:
   systemctl --user daemon-reload
   systemctl --user enable --now homelab-backup.timer wallpaper-update.timer
+
+Spotify Soloist (one-time, before enabling the service):
+  # API key from developer.spotify.com/dashboard/soloist — install.sh
+  # already prompted for and stored it (see .secrets) if it was missing.
+  soloist --pair --device-name "$(hostname) (soloist)" \
+    --api-key "$(secret-tool lookup service spotify-soloist key api-key)"
+  # then, in the Spotify app on the same network: device picker -> select it -> play something
+
+  systemctl --user daemon-reload
+  systemctl --user enable --now spotify-soloist.service
+
+Spotify search: needs a separate Developer app (Client ID + Secret, no
+redirect URI) at developer.spotify.com/dashboard — install.sh prompts for
+these too (see eww/.secrets).
