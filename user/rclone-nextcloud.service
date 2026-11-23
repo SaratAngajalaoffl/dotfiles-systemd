@@ -1,0 +1,20 @@
+[Unit]
+Description=Mount Nextcloud at ~/cloud (rclone, WebDAV)
+Documentation=https://rclone.org/webdav/
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+# rclone mount sends sd_notify once the mount is ready; the launcher execs
+# it, so it stays the main PID.
+Type=notify
+# Credentials come from the gnome-keyring via the launcher — never a file.
+ExecStart=%h/.config/systemd/user/rclone-nextcloud-launch.sh %h/cloud
+ExecStop=/usr/bin/fusermount3 -uz %h/cloud
+Restart=on-failure
+RestartSec=10
+
+# Logs: journalctl --user -u rclone-nextcloud.service
+
+[Install]
+WantedBy=default.target

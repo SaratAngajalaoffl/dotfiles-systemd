@@ -1,6 +1,6 @@
 # dotfiles-systemd
 
-User-level systemd units and timers — a homelab backup timer, a wallpaper-update timer, and a Spotify Soloist launch service.
+User-level systemd units and timers — a homelab backup timer, a wallpaper-update timer, a Spotify Soloist launch service, and an rclone Nextcloud mount (`~/cloud`).
 
 Part of the [dotfiles-arch](https://github.com/SaratAngajalaoffl/dotfiles-arch) multi-repo dotfiles system.
 
@@ -10,7 +10,7 @@ Part of the [dotfiles-arch](https://github.com/SaratAngajalaoffl/dotfiles-arch) 
 
 ## Secrets
 
-Declares a Spotify Soloist API key in `.secrets` — `install.sh` prompts for and stores it via `secret-tool` (gnome-keyring); it's never committed here.
+Declares a Spotify Soloist API key and Nextcloud username + app password in `.secrets` — `install.sh` prompts for and stores them via `secret-tool` (gnome-keyring); they're never committed here.
 
 ## Setup
 

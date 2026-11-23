@@ -15,3 +15,10 @@ Spotify Soloist (one-time, before enabling the service):
 Spotify search: needs a separate Developer app (Client ID + Secret, no
 redirect URI) at developer.spotify.com/dashboard — install.sh prompts for
 these too (see quickshell/.secrets).
+
+Nextcloud mount (~/cloud, via rclone):
+  # Before install.sh prompts for the "Nextcloud app password", create one at
+  # https://cloud.smugiwara.com → Settings → Security → Devices & sessions
+  # (name it e.g. "desktop-mount"), so the mount never uses your login password.
+  systemctl --user daemon-reload
+  systemctl --user enable --now rclone-nextcloud.service
